@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
 
+import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+
 export const TodoForm = ({addTodo}) => {
     const [value, setValue] = useState('');
 
@@ -14,9 +16,25 @@ export const TodoForm = ({addTodo}) => {
         }
       };
   return (
-    <form onSubmit={handleSubmit} className="TodoForm">
-    <input type="text" value={value} onChange={(e) => setValue(e.target.value)} className="todo-input" placeholder='What is the task today?' />
-    <button type="submit" className='todo-btn'>Add Task</button>
-  </form>
+    <Container className="my-5">
+      <Row className="justify-content-center">
+        <Col xs={12} sm={10} md={8} lg={12}>
+          <Form onSubmit={handleSubmit} className="p-2 shadow-sm rounded bg-light">
+            <Form.Group controlId="todoInput" className="mb-3">
+              <Form.Control
+                type="text"
+                placeholder="What is the task today?"
+                value={value}
+                onChange={(e) => setValue(e.target.value)}
+                className="todo-input"
+              />
+            </Form.Group>
+            <Button type="submit" className="w-100" variant="primary">
+              Add Task
+            </Button>
+          </Form>
+        </Col>
+      </Row>
+    </Container>
   )
 }
